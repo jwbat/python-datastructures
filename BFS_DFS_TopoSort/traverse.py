@@ -77,6 +77,7 @@ for edge in edges:
     g.add_edge(*edge)
 
 print('================================\n')
+print('graph: ')
 g.print_graph()
 print('\n================================')
 
@@ -92,16 +93,14 @@ print('\n================================')
 
 print('BFS iterative: ', end='  ')
 g.BFS(0) # 0 1 2 3 4
-print("\n")
-
-print('\n================================')
+print('\n===================================')
 
 stack = []
-g.topo_sort(0, set(), set(), stack)  # visiting set catches cycles
-#try:
-#    g.topo_sort(0, set(), set(), stack)  # visiting set catches cycles
-#except:
-#    print(None)
-
-print("\n") # 3 1 4 2 0  (several valid sorts)
+try:
+    g.topo_sort(0, set(), set(), stack)  # visiting set catches cycles
+                                         # 3 1 4 2 0  (several valid sorts)
+except:
+    print(None)
+print('Topological sort: ', end='  ')
 print(stack) # -> 3 depends on 1, 4 depends on 2, etc.
+print("\n")
